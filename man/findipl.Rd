@@ -7,17 +7,17 @@ Finds the s-left and s-right for a given internal point x
 From the definitions (4), (5) and (23) of reference it is necessary to find s_l and s_r in order to estimate the Extremum Surface Estimator (ESE) of the inflection point.
 }
 \usage{
-findipl(XX, FF, j)
+findipl(x, y, j)
 }
 \arguments{
-  \item{XX}{
+  \item{x}{
 The column vector of x-abscissas
 }
-  \item{FF}{
-The column vector of the errored or not y-ordinates
+  \item{y}{
+The column vector of the errored or not errored y-ordinates
 }
   \item{j}{
-The data index j such that x=XX[j]
+The data index j such that x=x[j]
 }
 }
 \details{
@@ -25,8 +25,8 @@ This function is using function eixf() for computing the elemenatry areas by the
 }
 \value{
 A list is returned that contains
-\item{j}{The data index j suvh that x=XX[j]}
-\item{x=XX[j]}{The corresponding x-abscissa}
+\item{j}{The data index j such that x=x[j]}
+\item{x=x[j]}{The corresponding x-abscissa}
 \item{sl}{The value of s-left}
 \item{sr}{The value of s-right}
 }
@@ -41,25 +41,25 @@ We have defined this small function to be used when we are scanning for the posi
 }
 \examples{
 #Lets create some data based on the Fisher-Pry model:
-xx<-cbind(seq(0,10,by=0.1))
-yy<-5*(1+tanh(xx-5))+2*0.1*(runif(dim(xx)[1])-0.5)
-N<-dim(xx)[1]
+x<-cbind(seq(0,10,by=0.1))
+y<-5*(1+tanh(x-5))+2*0.1*(runif(dim(x)[1])-0.5)
+N<-dim(x)[1]
 #We know that total symmetry exists, so for the middle point it is most probable to compute |sl|=|sr|
 j=(N-1)/2+1
 #Define the left and right chord:
-fl<-function(x){yy[1] + (yy[j] - yy[1]) * (x - xx[1]) / (xx[j] - xx[1])}
-fr<-function(x){yy[j] + (yy[N] - yy[j]) * (x - xx[j]) / (xx[N] - xx[j])}
+fl<-function(t){y[1] + (y[j] - y[1]) * (t - x[1]) / (x[j] - x[1])}
+fr<-function(t){y[j] + (y[N] - y[j]) * (t - x[j]) / (x[N] - x[j])}
 #Find the s-left and s-right:
-L<-findipl(xx,yy,j)
+L<-findipl(x,y,j)
 print(L)
 #Show all results in a plot:
-xxl=xx[1:j,]
-yyl=fl(xxl)
-xxr=xx[j:N,]
-yyr=fr(xxr)
-plot(xx,yy,type="l",col="red")
-lines(xxl,yyl,type="l",col="green")
-lines(xxr,yyr,type="l",col="blue")
-points(xx[j],yy[j], type = "p",pch = 19,col="black")
+xl=x[1:j,]
+yl=fl(xl)
+xr=x[j:N,]
+yr=fr(xr)
+plot(x,y,type="l",col="red")
+lines(xl,yl,type="l",col="green")
+lines(xr,yr,type="l",col="blue")
+points(x[j],y[j], type = "p",pch = 19,col="black")
 }
 \keyword{ ESE }

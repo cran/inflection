@@ -21,11 +21,11 @@ lin2(x1, y1, x2, y2, x)
 }
 \details{No more details required.
 }
-\value{It returns the value of the linear function from (x1,y1) to (x2,y2) at the arbitrary x 
+\value{It returns the value of the linear function from (x1,y1) to (x2,y2) at an arbitrary x. 
 }
-\references{There are no references
+\references{There are no references.
 }
-\author{Demetris T. Christopoulos
+\author{Demetris T. Christopoulos.
 }
 \note{The value of a linear function is built by this way for R to be faster than a two-vectors call.
 }

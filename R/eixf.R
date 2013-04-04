@@ -1,6 +1,6 @@
 eixf <-
-function(XX,FF,f,i)
+function(x,y,f,i)
 {
-  p=0.5*(XX[i + 1] - XX[i]) * (FF[i] - f(XX[i]) + FF[i + 1] - f(XX[i + 1])) 
+  p=0.5*(x[i + 1] - x[i]) * (y[i] - f(x[i]) + y[i + 1] - f(x[i + 1])) 
   p
 }

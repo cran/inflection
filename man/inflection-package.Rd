@@ -6,14 +6,14 @@
 Finds the inflection point of a curve
 }
 \description{
-Implementation of methods Extremum Surface Estimator and Extremum Distance Estimator for identifying the inflection point of a convex/cocave curve 
+Implementation of methods Extremum Surface Estimator and Extremum Distance Estimator for identifying the inflection point of a convex/concave curve 
 }
 \details{
 \tabular{ll}{
 Package: \tab inflection\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2013-03-09\cr
+Version: \tab 1.1\cr
+Date: \tab 2013-04-04\cr
 License: \tab GPL 2\cr
 }
 The x,y data should be column vectors\cr
@@ -32,31 +32,64 @@ Demetris T. Christopoulos(2012). Developing methods for identifying the inflecti
 \keyword{inflection}
 \examples{
 #Lets create some convex/concave data based on the Fisher-Pry model:
-xx<-cbind(seq(0,10,by=0.1))
-yy<-5*(1+tanh(xx-5))+2*0.1*(runif(dim(xx)[1])-0.5)
-N<-dim(xx)[1]
+x<-cbind(seq(0,10,by=0.1))
+y<-5*(1+tanh(x-5))+2*0.1*(runif(dim(x)[1])-0.5)
+#The inflection point is ip=5.0
+N<-dim(x)[1]
 #Because of the total symmetry we expect inflection point to be estimated near the middle of x-range:
-A<-findiplist(xx,yy,0)
+A<-findiplist(x,y,0)
 print(A)
 #Our expectation came true
 #Let's plot some interesting approximately results.
 #We define the line chords:
 js=round((A[1,1]+A[1,2])/2)
 jd=round((A[2,1]+A[2,2])/2)
-fl<-function(x){yy[1] + (yy[js] - yy[1]) * (x - xx[1]) / (xx[js] - xx[1])}
-fr<-function(x){yy[js] + (yy[N] - yy[js]) * (x - xx[js]) / (xx[N] - xx[js])}
-flin<-function(x){yy[1] + (yy[N] - yy[1]) * (x - xx[1]) / (xx[N] - xx[1])}
+fl<-function(t){y[1] + (y[js] - y[1]) * (t - x[1]) / (x[js] - x[1])}
+fr<-function(t){y[js] + (y[N] - y[js]) * (t - x[js]) / (x[N] - x[js])}
+flin<-function(t){y[1] + (y[N] - y[1]) * (t - x[1]) / (x[N] - x[1])}
 #Now we plot everything we have found:
-xxl=xx[1:js,]
-yyl=fl(xxl)
-xxr=xx[js:N,]
-yyr=fr(xxr)
-plot(xx,yy,type="l",col="red")
-lines(xxl,yyl,type="l",col="green")
-lines(xxr,yyr,type="l",col="blue")
-lines(xx,flin(xx),type="l",col="black")
-points(xx[js],yy[js], type = "p",pch = 19,col="black")
-points(xx[jd],yy[jd], type = "p",pch = 19,col="blue")
-text(xx[js+1],0,expression(chi[S]))
-text(xx[jd-1],0,expression(chi[D]))
+xl=x[1:js,]
+yl=fl(xl)
+xr=x[js:N,]
+yr=fr(xr)
+plot(x,y,type="l",col="red")
+lines(xl,yl,type="l",col="green")
+lines(xr,yr,type="l",col="blue")
+lines(x,flin(x),type="l",col="black")
+points(x[js],y[js], type = "p",pch = 19,col="black")
+abline(v=x[js],lty=2,col="black")
+points(x[jd],y[jd], type = "p",pch = 19,col="blue")
+abline(v=x[jd],lty=2,col="blue")
+text(x[js+10],0,expression(chi[S]))
+text(x[jd-10],y[30],expression(chi[D]))
+#Let's make some ESE and EDE iterations and plot them:
+a<-findipiterplot(x,y,0);
+#Show ESE iterations
+t(a$aese);
+#Show ESE iterations from EDE iterations
+t(a$bese);
+#Show all ESE iterations
+t(a$esm);
+#Show EDE iterations
+t(a$aede);
+#Show EDE iterations from ESE iterations
+t(a$bede);
+#Show all EDE iterations
+t(a$edm);
+#Show first solution
+a$first;
+#Statistics and 95 pc confidence interval for ESE
+a$aesmout;
+#Statistics and 95 pc confidence interval for ESE throw EDE 
+a$besmout;
+#Statistics and 95 pc confidence interval for EDE
+a$aedmout;
+#Statistics and 95 pc confidence interval for EDE throw ESE
+a$bedmout;
+#Statistics and 95 pc confidence interval for all ESE results
+a$esmout;
+#Statistics and 95 pc confidence interval for all EDE results
+a$edmout;
+#Statistics and 95 pc confidence interval for all results
+a$ipall;
 }
