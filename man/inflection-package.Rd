@@ -3,93 +3,92 @@
 \alias{inflection}
 \docType{package}
 \title{
-Finds the inflection point of a curve
+Finds the Inflection Point of a Curve
 }
 \description{
-Implementation of methods Extremum Surface Estimator and Extremum Distance Estimator for identifying the inflection point of a convex/concave curve 
+Implementation of methods Extremum Surface Estimator and Extremum Distance Estimator for identifying the inflection point of a convex/concave curve.\cr
+Methods used: ESE, BESE, EDE, BEDE, while "B" stands for prefix "Bisection", ie iterative method.\cr
 }
 \details{
 \tabular{ll}{
 Package: \tab inflection\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2013-04-04\cr
-License: \tab GPL 2\cr
+Version: \tab 1.2\cr
+Date: \tab 2016-06-10\cr
+License: \tab GPL (>=2)\cr
 }
-The x,y data should be column vectors\cr
-For a convex/concave curve:\cr
+The x,y data should be numeric vectors of length at least 4.\cr
+Examples of usage for a convex/concave curve:\cr
 findiplist(x,y,0)\cr
+ede(x,y,0)\cr
+bede(x,y,0)\cr
+ese(x,y,0)\cr
+bese(x,y,0)\cr
 For a concave/convex curve:\cr
-findiplist(x,y,1)
+findiplist(x,y,1)\cr
+and similar for other functions.
 }
 \author{
 Demetris T. Christopoulos \cr
 Maintainer: Demetris T. Christopoulos <dchristop@econ.uoa.gr>
 }
 \references{
-Demetris T. Christopoulos(2012). Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v1 [math.NA]
+[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v1 [math.NA], 2012 \cr
+[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), 2016
 }
 \keyword{inflection}
 \examples{
-#Lets create some convex/concave data based on the Fisher-Pry model:
-x<-cbind(seq(0,10,by=0.1))
-y<-5*(1+tanh(x-5))+2*0.1*(runif(dim(x)[1])-0.5)
-#The inflection point is ip=5.0
-N<-dim(x)[1]
-#Because of the total symmetry we expect inflection point to be estimated near the middle of x-range:
-A<-findiplist(x,y,0)
-print(A)
-#Our expectation came true
+#Lets create some convex/concave data based on the Fisher-Pry model
+#by using 1001 not equal spaced abscissas with data right asymmetry
+N=1001;
+#Case I: not noisy data
+#
+set.seed(2016-06-09);x=sort(runif(N,0,15));y=5+5*tanh(x-5);
+tese=ese(x,y,0);tese;#...simple run of ESE
+tede=ede(x,y,0);tede;#...simple run of EDE
+edeci(x,y,0);#...Run EDE and compute 95% Chebyshev c.i.
+eseit=bese(x,y,0);#...Bisection ESE (BESE)
+eseit$iplast#...last estimation for inflection point
+eseit$iters#...all iterations done...
+edeit=bede(x,y,0);#...Bisection EDE (BEDE)
+edeit$iplast#...last estimation for inflection point
+edeit$iters#...all iterations done
+A=findiplist(x,y,0);A;#...Run both ESE & EDE at once...
 #Let's plot some interesting approximately results.
-#We define the line chords:
-js=round((A[1,1]+A[1,2])/2)
-jd=round((A[2,1]+A[2,2])/2)
-fl<-function(t){y[1] + (y[js] - y[1]) * (t - x[1]) / (x[js] - x[1])}
-fr<-function(t){y[js] + (y[N] - y[js]) * (t - x[js]) / (x[N] - x[js])}
-flin<-function(t){y[1] + (y[N] - y[1]) * (t - x[1]) / (x[N] - x[1])}
-#Now we plot everything we have found:
-xl=x[1:js,]
-yl=fl(xl)
-xr=x[js:N,]
-yr=fr(xr)
-plot(x,y,type="l",col="red")
-lines(xl,yl,type="l",col="green")
-lines(xr,yr,type="l",col="blue")
-lines(x,flin(x),type="l",col="black")
-points(x[js],y[js], type = "p",pch = 19,col="black")
-abline(v=x[js],lty=2,col="black")
-points(x[jd],y[jd], type = "p",pch = 19,col="blue")
-abline(v=x[jd],lty=2,col="blue")
-text(x[js+10],0,expression(chi[S]))
-text(x[jd-10],y[30],expression(chi[D]))
-#Let's make some ESE and EDE iterations and plot them:
-a<-findipiterplot(x,y,0);
-#Show ESE iterations
-t(a$aese);
-#Show ESE iterations from EDE iterations
-t(a$bese);
-#Show all ESE iterations
-t(a$esm);
-#Show EDE iterations
-t(a$aede);
-#Show EDE iterations from ESE iterations
-t(a$bede);
-#Show all EDE iterations
-t(a$edm);
-#Show first solution
-a$first;
-#Statistics and 95 pc confidence interval for ESE
-a$aesmout;
-#Statistics and 95 pc confidence interval for ESE throw EDE 
-a$besmout;
-#Statistics and 95 pc confidence interval for EDE
-a$aedmout;
-#Statistics and 95 pc confidence interval for EDE throw ESE
-a$bedmout;
-#Statistics and 95 pc confidence interval for all ESE results
-a$esmout;
-#Statistics and 95 pc confidence interval for all EDE results
-a$edmout;
-#Statistics and 95 pc confidence interval for all results
-a$ipall;
+plot(x,y,type="l",xaxt="n",lwd=2);axis(1,at=seq(0,x[N]));
+lines(c(x[1],x[A[1,2]]),c(y[1],y[A[1,2]]),col="green",lty=2);
+lines(c(x[N],x[A[1,1]]),c(y[N],y[A[1,1]]),col="blue",lty=2);
+lines(c(x[1],x[N]),c(y[1],y[N]),col="black",lty=2);
+abline(v=A[,3],col=c('blue','red'),lty=2);
+points(x[A[1,1:2]],y[A[1,1:2]], type = "p",pch = 19,col="blue",font=2);
+points(x[A[2,1:2]],y[A[2,1:2]], type = "p",pch = 19,col="red",font=2);
+text(A[1,3]+0.5,0,expression(chi[S]),font=2);
+text(A[2,3]-0.5,0,expression(chi[D]),font=2);
+grid();
+#
+###Case II: noisy data
+set.seed(161718);x=sort(runif(N,0,15));
+r=0.1;y=5+5*tanh(x-5)+rnorm(N,0,0.05);
+tese=ese(x,y,0);tese;#...simple run of ESE
+tede=ede(x,y,0);tede;#...simple run of EDE
+edeci(x,y,0);#...Run EDE and compute 95% Chebyshev c.i.
+eseit=bese(x,y,0);#...Bisection ESE (BESE)
+eseit$iplast#...last estimation for inflection point
+eseit$iters#...all iterations done...
+edeit=bede(x,y,0);#...Bisection EDE (BEDE)
+edeit$iplast#...last estimation for inflection point
+edeit$iters#...all iterations done
+A=findiplist(x,y,0);A;#...Run both ESE & EDE at once...
+#Let's plot some interesting approximately results.
+plot(x,y,type="l",xaxt="n",lwd=2);axis(1,at=seq(0,x[N]));
+lines(c(x[1],x[A[1,2]]),c(y[1],y[A[1,2]]),col="green",lty=2);
+lines(c(x[N],x[A[1,1]]),c(y[N],y[A[1,1]]),col="blue",lty=2);
+lines(c(x[1],x[N]),c(y[1],y[N]),col="black",lty=2);
+abline(v=A[,3],col=c('blue','red'),lty=2);
+points(x[A[1,1:2]],y[A[1,1:2]], type = "p",pch = 19,col="blue",font=2);
+points(x[A[2,1:2]],y[A[2,1:2]], type = "p",pch = 19,col="red",font=2);
+text(A[1,3]+0.5,0,expression(chi[S]),font=2);
+text(A[2,3]-0.5,0,expression(chi[D]),font=2);
+grid();
+#
 }

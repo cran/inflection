@@ -1,32 +1,17 @@
 findipl <-
 function(x,y,j)
-{
-  n=dim(x)[1]
-  x1=x[1]
-  y1=y[1]
-  x2=x[j]
-  y2=y[j]
-  flin1=function(x)
-  {
-    lin2(x1,y1,x2,y2,x)
-  }
-  sl=0
-  for (i in 1:(j-1))
-  {
-    sl=sl+eixf(x,y,flin1,i)
-  }
-  x1=x[j]
-  y1=y[j]
-  x2=x[n]
-  y2=y[n]
-  flin2=function(x)
-  {
-    lin2(x1,y1,x2,y2,x)
-  }
-  sr=0
-  for (k in j:(n-1))
-  {
-    sr=sr+eixf(x,y,flin2,k)
-  }
+{ 
+  n=length(x);
+  #sl...
+  dxl=diff(x[1:j],1,1);
+  fl=y[1:j]-lin2(x[1],y[1],x[j],y[j],x[1:j]);
+  sb2l=0.5*(fl[1:(j-1)]+fl[2:j]);
+  sl=sum(dxl*sb2l)
+  #sr...
+  dxr=diff(x[j:n],1,1);
+  fr=y[j:n]-lin2(x[j],y[j],x[n],y[n],x[j:n]);
+  sb2r=0.5*(fr[1:(length(fr)-1)]+fr[2:length(fr)]);
+  sr=sum(dxr*sb2r)
+  #
   c(j,x[j],sl,sr)
 }

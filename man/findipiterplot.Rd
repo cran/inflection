@@ -1,37 +1,48 @@
 \name{findipiterplot}
 \alias{findipiterplot}
 \title{
-An iterative application of direct and cross ESE and EDE methods with plots of direct results.
+An Iterative Application of Direct and Cross ESE and EDE Methods with Plots of Direct Results
 }
 \description{
-We apply the ESE and EDE methods to the initial data. If it is possible then we do ESE iterations and compute both ESE( direct) and EDE (cross) estimations. Again if it is possible we do EDE iterations and compute both EDE (direct) and ESE (cross) estimations. Finally we plot the convergence of the direct ESE and EDE iterations.
+We apply the ESE and EDE methods to the initial data. If it is possible then we do ESE iterations and compute both ESE( direct) and EDE (cross) estimations.
+ Again if it is possible we do EDE iterations and compute both EDE (direct) and ESE (cross) estimations.
+ Finally we plot the sequence of the direct ESE and EDE iterations and compute 95\% confidence intervals for all available methods.
 }
 \usage{
-findipiterplot(x, y, index)
+findipiterplot(x, y, index, plots = TRUE, crossrun = FALSE, ci = FALSE)
 }
 \arguments{
   \item{x}{
-The column vector of x-abscissas
+The numeric vector of x-abscissas, must be of length at least 4.
 }
   \item{y}{
-The column vector of the errored or not errored y-ordinates
+The numeric vector of the noisy or not y-ordinates
 }
   \item{index}{
 If data is convex/concave then index=0 \cr
 If data is concave/convex then index=1
 }
+\item{plots}{
+When plots==TRUE the plot commands are executed
+}
+\item{crossrun}{
+When crossrun==TRUE the cross ESE and EDE are computed, if possible
+}
+\item{ci}{
+When ci==TRUE the 95\% confidence intervals are computed, if possible
+}
 }
 \details{
-If data is from an unknown function and without error then we can find the inflection point by a way similar to bisection method way for root finding.
-If data is errored, then we have two consistent estimators of the trapezoidal estimated inflection point, i.e. we consistently estimate what we could find by computing the relevant areas with elementary trapezoids.
+It applies when that is theoretically allowable the methods ESE, EDE, stores all useful result and according to 
+the input computes 95\% confidences intervals and plots the two sequences (BESE, BEDE) of results. 
 }
 \value{
 It returns an ans environment value with 16 components:
-  \item{ans$aese}{The vector of direct ESE iterations}
-  \item{ans$bese}{The vector of cross ESE iterations, ie estimations with data from EDE iterations}
+  \item{ans$BESE}{The vector of direct ESE iterations}
+  \item{ans$CRESE}{The vector of cross ESE iterations, ie estimations with data from EDE iterations}
   \item{ans$esm}{The vector of all available ESE iterations}
-  \item{ans$aede}{The vector of direct EDE iterations}
-  \item{ans$bede}{The vector of cross EDE iterations, ie estimations with data from ESE iterations}
+  \item{ans$BEDE}{The vector of direct EDE iterations}
+  \item{ans$CREDE}{The vector of cross EDE iterations, ie estimations with data from ESE iterations}
   \item{ans$edm}{The vector of all available EDE iterations}
   \item{ans$first}{The output of first run from findiplisit(x,y,index)}
   \item{ans$aesmout}{Mean, Std Deviation and 95 pc confidence interval for direct ESE iterations}
@@ -45,7 +56,8 @@ It returns an ans environment value with 16 components:
   \item{ans$xydl}{A list of xy data frames containing the data of every direct ESE iteration}  
 }
 \references{
-Demetris T. Christopoulos(2012).Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v1 [math.NA]
+[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve, arXiv:1206.5478v2 [math.NA], 2012.\cr
+[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), 2016.
 }
 \author{
 Demetris T. Christopoulos
@@ -54,53 +66,36 @@ Demetris T. Christopoulos
 Useful for graphical investigation of the inflection point.
 }
 \seealso{
-See Also as \code{\link{findiplist}}.
+See also \code{\link{bese}} and \code{\link{bede}}.
 }
 \examples{
-#Lets create some convex/concave data based on a Gompertz sigmoid curve:
-x<-cbind(seq(3.5,9.5,by=0.05))
-y<-10*exp(-exp(5)*exp(-x))+2*0.03*(runif(dim(x)[1])-0.5)
-#which has inflection point ip=5.0
-#We shall find the inflection point with 4 iterative methods:
-a<-findipiterplot(x,y,0);
-#The vector of direct ESE iterations:
-t(a$aese);
-#The vector of cross ESE iterations, ie estimations with data from EDE iterations:
-t(a$bese);
-#The vector of all available ESE iterations:
-t(a$esm);
-#The vector of direct EDE iterations:
-t(a$aede);
-#The vector of cross EDE iterations, ie estimations with data from ESE iterations
-t(a$bede);
-#The vector of all available EDE iterations:
-t(a$edm);
-#The output of first run from findiplisit(x,y,index):
-a$first;
-#Mean, Std Deviation and 95 pc confidence interval for direct ESE iterations:
-a$aesmout;
-#Mean, Std Deviation and 95 pc confidence interval for cross ESE iterations
-a$besmout;
-#Mean, Std Deviation and 95 pc  confidence interval for all ESE iterations:
-a$esmout;
-#Mean, Std Deviation and 95 pc confidence interval for direct EDE iterations:
-a$aedmout;
-#Mean, Std Deviation and 95 pc confidence interval for cross EDE iterations:
-a$bedmout;
-#Mean, Std Deviation and 95 pc confidence interval for all EDE iterations:
-a$edmout;
-#Mean, Std Deviation and 95 pc confidence interval for all available iterations:
-a$ipall;
-#From the list of data frames you can also do plots, 1st data set:
-plot(a$xysl[1:2],xlab=paste("x",1),ylab=paste("y",1))
-abline(v=a$aese[1],lty=2,col="blue")
-title(paste("ESE iter",1),sub=paste("ip=",a$aese[1]))
-#2nd data set:
-plot(a$xysl[3:4],xlab=paste("x",2),ylab=paste("y",2))
-abline(v=a$aese[2],lty=2,col="blue")
-title(paste("ESE iter",2),sub=paste("ip=",a$aese[2]))
+#Lets create some convex/concave data based on the Fisher-Pry model
+x<-seq(0,10,by=0.05);
+set.seed(161718);y<-5*(1+tanh(x-5))+runif(length(x),-0.1,0.1);
+#The exact inflection point is ip=5.0
+#Because of the total symmetry we expect inflection point near the middle of x-range:
+A<-findiplist(x,y,0);A;#Our expectation came true
+#Let's make some ESE and EDE iterations and plot them:
+a<-findipiterplot(x,y,0,TRUE,TRUE,TRUE);
+a$first;#Show first solution
+a$BESE;#Show ESE iterations
+a$CRESE;#Show cross ESE iterations from EDE iterations
+a$esm;#Show all ESE iterations
+a$BEDE;#Show EDE iterations
+a$CREDE;#Show cross EDE iterations from ESE iterations
+a$edm;#Show all EDE iterations
+a$aesmout;#Statistics and 95\%c c.i. for ESE
+a$besmout;#Statistics and 95\%c c.i. for cross EsE
+a$aedmout;#Statistics and 95\%c c.i. for EDE
+a$bedmout;#Statistics and 95\%c c.i. for cross EDE
+a$esmout;#Statistics and 95\%c c.i. for all ESE results
+a$edmout;#Statistics and 95\%c c.i. for all EDE results
+a$ipall;#Statistics and 95\%c c.i. for results
+#Close the 2 previously opened devises
+dev.off();dev.off();
+#
 }
 \keyword{inflection}
-\keyword{ESE }
-\keyword{EDE }
+\keyword{ese}
+\keyword{ede}
 \keyword{iterative}

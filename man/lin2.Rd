@@ -1,6 +1,6 @@
 \name{lin2}
 \alias{lin2}
-\title{Linear function defined from two points (x1,y1) and (x2,y2)
+\title{Linear Function Defined from Two Points (x1,y1) and (x2,y2)
 }
 \description{It gives the value of the linear function defined from two points (x1,y1) and (x2,y2) at any x 
 }
