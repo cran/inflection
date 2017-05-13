@@ -9,7 +9,6 @@ It computes except from the common EDE output the Chebyshev confidence interval 
 \usage{
 edeci(x, y, index, k = 5)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
  \item{x}{
 The numeric vector of x-abscissas, must be of length at least 4.
@@ -36,33 +35,42 @@ where usually k=5 because it corresponds to 96\%, while an estimator of \eqn{\si
 A one row matrix with elements the output of EDE, the given k and the Chebyshev c.i.
 }
 \references{
-[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve, arXiv:1206.5478v2 [math.NA], 2012.\cr
-[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), 2016.
+[1]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://www.researchgate.net/publication/304557351 }, 2016
 }
 \author{
 Demetris T. Christopoulos
 }
 \note{
-This function works better if the noise is of a "zig-zag"" pattern, see [2].\cr
-New function in version 1.2
+This function works better if the noise is of a "zig-zag"" pattern, see [1].
 }
 \seealso{
-See also the simple version \code{\link{ede}}.
+See also the simple \code{\link{ede}} and iterative version \code{\link{bede}}.
 }
 \examples{
+#
 #Gompertz model with noise, unequal spaces
 #and 1 million cases:
 N=10^6+1;
-set.seed(2016-06-10);x=sort(runif(N,0,10));y=10*exp(-exp(5)*exp(-x))+runif(N,-0.05,0.05);
+set.seed(2017-05-11);x=sort(runif(N,0,10));y=10*exp(-exp(5)*exp(-x))+runif(N,-0.05,0.05);
 #EDE one time only
 ede(x,y,0)
+#         j1     j2      chi
+# EDE 372064 720616 5.465584
 #Not so close to the exact point
 #Let's reduce the size using BEDE
 iters=bede(x,y,0)$iters;iters;
-#Now we choose pre-last interval, in order for EDE to be applicable
+#         n            a        b      EDE
+# 1 1000001 2.273591e-05 9.999994 5.465584
+# 2  348553 4.237734e+00 6.017385 5.127559
+# 3  177899 4.573986e+00 5.499655 5.036821
+#Now we choose last interval, in order for EDE to be applicable on next run
 ab=apply(iters[dim(iters)[1]-1,c('a','b')],2,function(xx,x){which(x==xx)},x);ab;
+#      a      b 
+# 423480 601378
 #Apply edeci...
 edeci(x[ab[1]:ab[2]],y[ab[1]:ab[2]],0)
+#        j1     j2      chi k  chi-5*s  chi+5*s
+# EDE 33355 126329 5.036821 5 4.892156 5.181485
 #Very close to the true inflection point.
 #
 }

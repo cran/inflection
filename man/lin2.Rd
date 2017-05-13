@@ -19,11 +19,7 @@ lin2(x1, y1, x2, y2, x)
   \item{x}{the x - point where we compute the value of the linear function
 }
 }
-\details{No more details required.
-}
 \value{It returns the value of the linear function from (x1,y1) to (x2,y2) at an arbitrary x. 
-}
-\references{There are no references.
 }
 \author{Demetris T. Christopoulos.
 }
