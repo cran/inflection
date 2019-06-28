@@ -1,7 +1,7 @@
 \name{ese}
 \alias{ese}
 \title{
-The Extremum Surface Estimator (ESE) for Finding the Inflection Point of a Convex/Concave Curve
+The Extremum Surface Estimator (ESE) for finding the inflection point of a convex/concave curve
 }
 \description{
 Implementation of ESE method as defined in [1] and [2] by giving a simple output of the method. Use of parallel computing under user request.
@@ -36,14 +36,15 @@ A matrix of size 1 x 3 is returned with elements:
   \item{A(1,3)=\eqn{\chi_{S}}}{The Extremum Surface Estimator (ESE) for inflection point}
 }
 \references{
-[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v2 [math.NA], \url{https://arxiv.org/pdf/1206.5478v2.pdf}, 2014 \cr
-[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://www.researchgate.net/publication/304557351 }, 2016
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
 }
 \author{
 Demetris T. Christopoulos
 }
 \note{
-Use doparallel=TRUE option when you have relative large data sets (N>2000). \cr
+Use doparallel=TRUE option when you have relative large data sets (N>20000). \cr
 For large data sets (one million rows) it is better to use first \code{\link{ede}} or \code{\link{bede}}
 in order to locate a smaller neighbourhood of the inflection point. Then ese gives a better estimation, since it uses 
 surfaces and not distances from total chord.

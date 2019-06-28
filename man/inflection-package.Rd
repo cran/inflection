@@ -6,65 +6,67 @@
 Finds the Inflection Point of a Curve
 }
 \description{
-Implementation of methods Extremum Surface Estimator (ESE) and Extremum Distance Estimator
-(EDE) to identify the inflection point of a curve.
+Implementation of methods Extremum Surface Estimator (ESE), Extremum Distance Estimator
+(EDE) and their iterative versions BESE and BEDE in order to identify the inflection point of a curve.
 }
 \details{
-       Package: inflection \cr
-       Type: Package \cr
-       Version:  1.3 \cr 
-       Date: 2017-05-11 \cr
-       License: GPL (>=2) \cr
-       Author: Demetris T. Christopoulos \cr
-       Maintainer: Demetris T. Christopoulos \email{dchristop@econ.uoa.gr} \cr
-       URL: \url{https://CRAN.R-project.org/package=inflection} \cr
-       \cr
 The x,y data should be numeric vectors of length at least 4 without missing values. \cr 
 Main functions for a convex/concave curve are: \cr
 ese(x,y,0) for ESE method, see \code{\link{ese}} & iterative version \code{\link{bese}} for BESE  \cr
 ede(x,y,0) for EDE method, see \code{\link{ede}} & iterative version \code{\link{bede}} for BEDE   \cr
-findiplist(x,y,0) for both ESE and EDE methods, see \code{\link{findiplist}} 
+findiplist(x,y,0) for both ESE and EDE methods, see \code{\link{findiplist}} \cr
+
+From version 1.3.5 it is also available the implementation of Unit Invariant Knee (UIK) method for the determination 
+of elbow or knee point of a curve. That is extremely useful in a wide range of analyses every time we want to find the optimal number of 'components' from a scree plot (PCA: components, Archetypal Analysis: archetypes, Factor A.: factors,  Cluster A..: clusters and so on). In most of the cases uasage is uik(x,y), with x the vector of components, archetypes, clusters, factors or whatever and y the relevant vector Sum of Squared Errors (SSE), see \code{\link{uik}} and \code{\link{d2uik}}.
+
+The methods are defined at [1] & [2] while a detailed reproduction of all Tables for [1] exist in a vignette. All relevant Tables exist as data, for example 
+to load Table 1 of [1] we just use data("table_01"). 
 }
 \author{
 Demetris T. Christopoulos
 }
 \references{
-[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v2 [math.NA], \url{https://arxiv.org/pdf/1206.5478v2.pdf}, 2014 \cr
-[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://www.researchgate.net/publication/304557351 }, 2016
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} \cr
+
+[3]Demetris T. Christopoulos (2016). Introducing Unit Invariant Knee (UIK) As an Objective Choice for Elbow Point in Multivariate Data Analysis Techniques (March 1, 2016). \url{http://dx.doi.org/10.2139/ssrn.3043076} 
 }
 \seealso{
 \code{\link{ese}}, \code{\link{bese}}, \code{\link{ede}}, \code{\link{bede}}, \code{\link{findiplist}}, \code{\link{findipiterplot}}
 }
 \examples{
 #
-#Lets create some convex/concave data based on the Fisher-Pry model
-#by using 1001 not equal spaced abscissas with data right asymmetry
+## Lets create some convex/concave data based on the Fisher-Pry model
+##by using 1001 not equal spaced abscissas with data right asymmetry
 N=20001;
-#Case I: not noisy data
+## Case I: not noisy data
 #
-set.seed(2017-05-11);x=sort(runif(N,0,15));y=5+5*tanh(x-5);
+set.seed(20190628);
+x=sort(runif(N,0,15));y=5+5*tanh(x-5);
 #
-#t1=Sys.time();
-#tese=ese(x,y,0,doparallel = TRUE);#...simple run of ESE
-#t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 8.833521 secs
-#tese;
-#       j1   j2      chi
-# ESE 4686 8353 4.835303
+# t1=Sys.time();
+# tese=ese(x,y,0,doparallel = TRUE);#...simple run of ESE
+# t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 6.023056 secs
+# tese;
+##       j1   j2      chi
+## ESE 4573 8272 4.834904
 tede=ede(x,y,0);tede;#...simple run of EDE
-#       j1   j2      chi
-# EDE 4506 8937 4.999854
+##       j1   j2      chi
+## EDE 4418 8867 5.000198
 edeci(x,y,0);#...Run EDE and compute 95% Chebyshev c.i.
-#       j1   j2      chi k  chi-5*s  chi+5*s
-# EDE 4506 8937 4.999854 5 4.994231 5.005477
+##       j1   j2      chi k  chi-5*s chi+5*s
+## EDE 4418 8867 5.000198 5 4.994605 5.00579
 #
-#t1=Sys.time();
-#eseit=bese(x,y,0,doparallel = TRUE);#...Bisection ESE (BESE)
-#t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 10.00725 secs
-#eseit$iplast#...last estimation for inflection point
-# [1] 5.000004
-#eseit$iters#...all iterations done...
+# t1=Sys.time();
+# eseit=bese(x,y,0,doparallel = TRUE);#...Bisection ESE (BESE)
+# t2=Sys.time();
+# print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 6.262982 secs
+#eseit$iplast #...last estimation for inflection point
+## [1] 5.000773
+#eseit$iters #...all iterations done...
 #        n            a         b      ESE
 # 1  20001 0.0001931784 14.999900 4.835303
 # 2   3668 4.4606627093  5.647031 5.053847
@@ -79,36 +81,35 @@ edeci(x,y,0);#...Run EDE and compute 95% Chebyshev c.i.
 #
 t1=Sys.time();
 edeit=bede(x,y,0);#...Bisection EDE (BEDE)
-t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+t2=Sys.time();
+print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
 # Time difference of 0.073102 secs
-edeit$iplast#...last estimation for inflection point
-# [1] 4.999459
-edeit$iters#...all iterations done
-#        n            a         b      EDE
-# 1  20001 0.0001931784 14.999900 4.999854
-# 2   4432 4.1998532682  5.799711 4.999782
-# 3   2107 4.5637933596  5.437583 5.000688
-# 4   1144 4.7517725313  5.247734 4.999753
-# 5    644 4.8571156547  5.141445 4.999280
-# 6    371 4.9186601420  5.081275 4.999968
-# 7    209 4.9537387909  5.046274 5.000006
-# 8    109 4.9746007437  5.026189 5.000395
-# 9     58 4.9847909727  5.014909 4.999850
-# 10    31 4.9906087574  5.008346 4.999477
-# 11    20 4.9941347516  5.005834 4.999984
-# 12    13 4.9962181749  5.002740 4.999479
-# 13    10 4.9980399851  5.001968 5.000004
-# 14     5 4.9980399851  5.001157 4.999599
-# 15     4 4.9980399851  5.000878 4.999459
-#t1=Sys.time();
-#A=findiplist(x,y,0,doparallel=TRUE);#...Run both ESE & EDE at once...
-#t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 8.069601 secs
-#A;
-#       j1   j2      chi
-# ESE 4686 8353 4.835303
-# EDE 4506 8937 4.999854
-#Let's plot some interesting approximately results.
+edeit$iplast #...last estimation for inflection point
+## [1]  4.999941
+edeit$iters #...all iterations done
+##        n            a         b      EDE
+## 1  20001 0.0004635123 14.999801 5.000198
+## 2   4450 4.1996716394  5.799961 4.999816
+## 3   2129 4.5614927786  5.438346 4.999920
+## 4   1182 4.7512642248  5.249931 5.000597
+## 5    656 4.8580908542  5.143351 5.000721
+## 6    365 4.9175169028  5.082218 4.999868
+## 7    229 4.9524894403  5.047898 5.000194
+## 8    135 4.9723928177  5.027658 5.000025
+## 9     77 4.9835896748  5.016056 4.999823
+## 10    46 4.9904827878  5.009340 4.999912
+## 11    28 4.9945713510  5.005444 5.000008
+## 12    15 4.9968973151  5.003045 4.999971
+## 13    11 4.9978968780  5.001986 4.999941
+# t1=Sys.time();
+# A=findiplist(x,y,0,doparallel=TRUE);#...Run both ESE & EDE at once...
+# t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 5.143354 secs
+#A
+##       j1   j2      chi
+## ESE 4573 8272 4.834904
+## EDE 4418 8867 5.000198
+## Let's plot some interesting approximately results.
 # plot(x,y,type="l",xaxt="n",lwd=2);axis(1,at=seq(0,x[N]));
 # lines(c(x[1],x[A[1,2]]),c(y[1],y[A[1,2]]),col="green",lty=2);
 # lines(c(x[N],x[A[1,1]]),c(y[N],y[A[1,1]]),col="blue",lty=2);
@@ -120,58 +121,63 @@ edeit$iters#...all iterations done
 # text(A[2,3]+0.5,0,expression(chi[D]),font=2,col='red');
 # grid();
 #
-###Case II: noisy data
+### Case II: noisy data
 #
-set.seed(2017-05-11);x=sort(runif(N,0,15));
+set.seed(20190628);
+x=sort(runif(N,0,15));
 r=0.1;y=5+5*tanh(x-5)+rnorm(N,0,0.05);
 #
 # t1=Sys.time();
 # tese=ese(x,y,0,doparallel = TRUE);#...simple run of ESE
-# t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 7.692794 secs
-#tese;
-#       j1   j2     chi
-# ESE 4496 8470 4.82379
+# t2=Sys.time();
+# print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 4.878437 secs
+#tese
+##       j1   j2      chi
+## ESE 4684 8412 4.936269
 tede=ede(x,y,0);tede;#...simple run of EDE
 #       j1   j2      chi
-# EDE 4496 8737 4.920319
+# EDE 4190 8856 4.909071
 edeci(x,y,0);#...Run EDE and compute 95% Chebyshev c.i.
-#       j1   j2      chi k  chi-5*s  chi+5*s
-# EDE 4496 8737 4.920319 5 4.670757 5.169881
+##       j1   j2      chi k  chi-5*s  chi+5*s
+## EDE 4190 8856 4.909071 5 4.659396 5.158746
 # t1=Sys.time();
 # eseit=bese(x,y,0,doparallel = TRUE);#...Bisection ESE (BESE)
 # t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 9.069703 secs
+## Time difference of 6.288019 secs
 #eseit$iplast#...last estimation for inflection point
-# [1] 4.939637
+## [1] 4.94072
 #eseit$iters#...all iterations done...
-#       n            a         b      ESE
-# 1 20001 0.0001931784 14.999900 4.823790
-# 2  3975 4.4058744342  5.714312 5.060093
-# 3  1734 4.6071795677  5.190929 4.899054
-# 4   742 4.8696448782  5.009629 4.939637
+##       n            a         b      ESE
+## 1 20001 0.0004635123 14.999801 4.936269
+## 2  3729 4.4285049755  5.538487 4.983496
+## 3  1475 4.7297708667  5.413794 5.071782
+## 4   932 4.7838335764  5.097607 4.940720
 #
 t1=Sys.time();
 edeit=bede(x,y,0);#...Bisection EDE (BEDE)
-t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-#Time difference of Time difference of 0.01562595 secs
+t2=Sys.time();
+print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 0.01700807 secs
 edeit$iplast#...last estimation for inflection point
-# [1] 4.94808
+## [1] 5.071782
 edeit$iters#...all iterations done
-#       n            a         b      EDE
-# 1 20001 0.0001931784 14.999900 4.920319
-# 2  4242 4.1818478820  5.714312 4.948080
+##       n            a         b      EDE
+## 1 20001 0.0004635123 14.999801 4.909071
+## 2  4667 4.2343777127  5.704010 4.969194
+## 3  1938 4.7297708667  5.413794 5.071782
 #
 # t1=Sys.time();
 # A=findiplist(x,y,0,doparallel=TRUE);#...Run both ESE & EDE at once...
-# t2=Sys.time();print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
-# Time difference of 7.912064 secs
-#A;
-#       j1   j2      chi
-# ESE 4496 8470 4.823790
-# EDE 4496 8737 4.920319
+# t2=Sys.time();
+# print(as.POSIXlt(t2, "GMT")-as.POSIXlt(t1, "GMT"),quote=F);
+## Time difference of 5.037386 secs
+#A
+##       j1   j2      chi
+## ESE 4684 8412 4.936269
+## EDE 4190 8856 4.909071
 #
-#Let's plot some interesting approximately results.
+## Let's plot some interesting approximately results.
 # plot(x,y,type="l",xaxt="n",lwd=2);axis(1,at=seq(0,x[N]));
 # lines(c(x[1],x[A[1,2]]),c(y[1],y[A[1,2]]),col="green",lty=2);
 # lines(c(x[N],x[A[1,1]]),c(y[N],y[A[1,1]]),col="blue",lty=2);
@@ -182,8 +188,17 @@ edeit$iters#...all iterations done
 # text(A[1,3]-0.5,0,expression(chi[S]),font=2,col='blue');
 # text(A[2,3]+0.5,0,expression(chi[D]),font=2,col='red');
 # grid();
-#Close device
-#dev.off();
-#
+## Close device
+#dev.off()
+##
+## Load data used for Tables of [1]
+data("table_01")
+dh=table_01
+plot(dh,pch=19,cex=0.1)
+A=findiplist(dh$x,dh$y,0) 
+A
+abline(v=A[1,3],col='blue')
+abline(v=A[2,3],col='red')
+##
 }
 \keyword{inflection}

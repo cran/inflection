@@ -99,64 +99,74 @@ xsm<-cbind(xpes);ysm<-cbind(ypes);xdm<-cbind(xped);ydm<-cbind(yped);
 #
 if(plots){
   #
-  # dev.new()
-  pdf("ese_iterations.pdf")
-  par(mfrow=c(2,ceiling(nps/2)))
-  n0<-0;
-  dfs<-c();
-  # cols=colorRampPalette(c("blue", "red"))(nps); 
-  cols=colorRampPalette(c("blue", "green"))(nps); 
-  for (i in 1:nps)
-  {
-    x1<-xsm[(n0+1):(n0+ns[1])];y1<-ysm[(n0+1):(n0+ns[1])];
-    x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfs[[i]]=as.data.frame(cbind(x,y));
-    plot(x,y,xlab=paste("x",i),ylab=paste("y",i),col=cols[i],pch=19)
-    abline(v=BESE[i],lty=2,col='blue')
-    title(paste("ESE iter",i),sub=paste("ip=",BESE[i]))
-    n0<-n0+ns[i];
+  if(nps>0){
+    dev.new()
+    par(mfrow=c(2,ceiling(nps/2)))
+    n0<-0;
+    dfs<-c();
+    # cols=colorRampPalette(c("blue", "red"))(nps); 
+    cols=colorRampPalette(c("blue", "green"))(nps); 
+    for (i in 1:nps)
+    {
+      x1<-xsm[(n0+1):(n0+ns[1])];y1<-ysm[(n0+1):(n0+ns[1])];
+      x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfs[[i]]=as.data.frame(cbind(x,y));
+      plot(x,y,xlab=paste("x",i),ylab=paste("y",i),col=cols[i],pch=19)
+      abline(v=BESE[i],lty=2,col='blue')
+      title(paste("ESE iter",i),sub=paste("ip=",BESE[i]))
+      n0<-n0+ns[i];
+    }
+    #store xy-subsets
+    out$xysl=dfs;
   }
-  dev.off()
+  # 
   #
-  # dev.new()
-  pdf("ede_iterations.pdf")
-  par(mfrow=c(2,ceiling(npd/2)))
-  n0<-0;
-  dfd<-c();
-  cols=colorRampPalette(c("blue", "red"))(npd); 
-  for (i in 1:npd)
-  {
-    x1<-xdm[(n0+1):(n0+nd[1])];y1<-ydm[(n0+1):(n0+nd[1])];
-    x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfd[[i]]=as.data.frame(cbind(x,y));
-    plot(x,y,xlab=paste("x",i),ylab=paste("y",i),col=cols[i],pch=19)
-    abline(v=BEDE[i],lty=2,col='red')
-    title(paste("EDE iter",i),sub=paste("ip=",BEDE[i]))
-    n0<-n0+nd[i];
+  if(npd>0){
+    dev.new()
+    par(mfrow=c(2,ceiling(npd/2)))
+    n0<-0;
+    dfd<-c();
+    cols=colorRampPalette(c("blue", "red"))(npd); 
+    for (i in 1:npd)
+    {
+      x1<-xdm[(n0+1):(n0+nd[1])];y1<-ydm[(n0+1):(n0+nd[1])];
+      x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfd[[i]]=as.data.frame(cbind(x,y));
+      plot(x,y,xlab=paste("x",i),ylab=paste("y",i),col=cols[i],pch=19)
+      abline(v=BEDE[i],lty=2,col='red')
+      title(paste("EDE iter",i),sub=paste("ip=",BEDE[i]))
+      n0<-n0+nd[i];
+    }
+    #store xy-subsets
+    out$xydl=dfd;
   }
-  dev.off()
-  #store xy-subsets
-  out$xysl=dfs;
-  out$xydl=dfd;
+  #
 }else{
-  n0<-0;
-  dfs<-c();
-  for (i in 1:nps)
-  {
-    x1<-xsm[(n0+1):(n0+ns[1])];y1<-ysm[(n0+1):(n0+ns[1])];
-    x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfs[[i]]=as.data.frame(cbind(x,y));
-    n0<-n0+ns[i];
+  if(nps>0)
+   { 
+    n0<-0;
+    dfs<-c();
+    for (i in 1:nps)
+    {
+      x1<-xsm[(n0+1):(n0+ns[1])];y1<-ysm[(n0+1):(n0+ns[1])];
+      x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfs[[i]]=as.data.frame(cbind(x,y));
+      n0<-n0+ns[i];
+    }
+    #store xy-subsets
+    out$xysl=dfs;
   }
   #
-  n0<-0;
-  dfd<-list();
-  for (i in 1:npd)
-  {
-    x1<-xdm[(n0+1):(n0+nd[1])];y1<-ydm[(n0+1):(n0+nd[1])];
-    x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfd[[i]]=as.data.frame(cbind(x,y));
-    n0<-n0+nd[i];
+  if(npd>0)
+  {  
+    n0<-0;
+    dfd<-list();
+    for (i in 1:npd)
+    {
+      x1<-xdm[(n0+1):(n0+nd[1])];y1<-ydm[(n0+1):(n0+nd[1])];
+      x<-x1[!is.na(x1)];y<-y1[!is.na(y1)];dfd[[i]]=as.data.frame(cbind(x,y));
+      n0<-n0+nd[i];
+    }
+    #store xy-subsets
+    out$xydl=dfd;
   }
-  #store xy-subsets
-  out$xysl=dfs;
-  out$xydl=dfd;
 }
 #
 #Return out

@@ -1,17 +1,16 @@
 \name{findipiterplot}
 \alias{findipiterplot}
 \title{
-A Function to Show Implementation of BESE and BEDE Methods by Plotting their Convergence
+A function to show implementation of BESE and BEDE methods by plotting their iterative convergence
 }
 \description{
 We apply the BESE and BEDE methods, we plot results showing the bisection like convergence to the true inflection point. 
-One pdf plot is created for BESE and another one for BEDE. If it is possible, then we compute 95\% confidence intervals
+One plot is created for BESE and another one for BEDE. If it is possible, then we compute 95\% confidence intervals
 for the results. Parallel computing also available under user request.
 }
 \usage{
 findipiterplot(x, y, index, plots = TRUE, ci = FALSE, doparallel = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 The numeric vector of x-abscissas, must be of length at least 4.
@@ -48,8 +47,9 @@ Useful for a graphical investigation of the inflection point.
 \item{ans$xydl}{A list of xy data frames containing the data used for every EDE iteration} 
 }
 \references{
-[1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v2 [math.NA], \url{https://arxiv.org/pdf/1206.5478v2.pdf}, 2014 \cr
-[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://www.researchgate.net/publication/304557351 }, 2016
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
 }
 \author{
 Demetris T. Christopoulos

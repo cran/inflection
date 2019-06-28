@@ -32,14 +32,15 @@ For very large data sets it is better using first EDE method, see \code{\link{ed
 Then we apply BESE at a smaller range.
 }
 \value{
-t returns a list of two elements: \cr
+It returns a list of two elements: \cr
 \item{iplast}{the last estimation found}
 \item{iters}{a matrix with 4 columns ("n", "a", "b", "ESE") that give the number of x-y pairs 
 used at each iteration, the [a,b] range where we searched and the ESE estimated inflection point.}
 }
 \references{
 [1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. arXiv:1206.5478v2 [math.NA], \url{https://arxiv.org/pdf/1206.5478v2.pdf}, 2014 \cr
-[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://www.researchgate.net/publication/304557351 }, 2016
+
+[2]Demetris T. Christopoulos, On the efficient identification of an inflection point,International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1), \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf}, 2016
 }
 \author{
 Demetris T. Christopoulos
