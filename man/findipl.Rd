@@ -24,7 +24,7 @@ The data index j such that x=\eqn{x_j}
 \value{
 A list is returned that contains
 \item{j}{The data index j such that x=\eqn{x_j}}
-\item{x=\eqn{x_j}}{The corresponding x-abscissa}
+\item{x}{The corresponding x-abscissa}
 \item{sl}{The value of s-left}
 \item{sr}{The value of s-right}
 }

@@ -26,9 +26,9 @@ We also obtain the \eqn{x_{F_{1}},x_{F_{2}}} points, see [1], [2].
 }
 \value{
 A matrix of size 1 x 3 is returned with elements:
-  \item{A(1,1)=\eqn{i_1}}{The index \eqn{j_{F_{1}}} for EDE method}
-  \item{A(1,2)=\eqn{i_1}}{The index \eqn{j_{F_{2}}} for EDE method}
-  \item{A(1,3)=\eqn{\chi_{D}}}{The Extremum Distance Estimator (EDE) for inflection point}
+  \item{A(1,1)}{The index \eqn{j_{F_{1}}} for EDE method}
+  \item{A(1,2)}{The index \eqn{j_{F_{2}}} for EDE method}
+  \item{A(1,3)}{The Extremum Distance Estimator (EDE) for inflection point}
 }
 \references{
 [1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr

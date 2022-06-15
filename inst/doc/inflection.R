@@ -1,4 +1,4 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 library(inflection)
 knitr::opts_chunk$set(echo = TRUE)
 options(max.width = 1000)

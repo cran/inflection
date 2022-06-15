@@ -33,12 +33,12 @@ If data is noisy, then we have two consistent estimators of the inflection point
 }
 \value{
 A matrix of size 2 x 3 is returned with elements:
-  \item{A(1,1)=\eqn{i_1}}{The index j-right for ESE method}
-  \item{A(1,2)=\eqn{i_2}}{The index j-left for ESE method}
-  \item{A(1,3)=\eqn{\chi_{S}}}{The Extremum Surface Estimator (ESE) for inflection point}
-  \item{A(2,1)=\eqn{i_1}}{The index j1 for EDE method}
-  \item{A(2,2)=\eqn{i_2}}{The index j2 for EDE method}
-  \item{A(2,3)=\eqn{\chi_{D}}}{The Extremum Distance Estimator (EDE) for inflection point, if this method is applicable}
+  \item{A(1,1)}{The index j-right for ESE method}
+  \item{A(1,2)}{The index j-left for ESE method}
+  \item{A(1,3)}{The Extremum Surface Estimator (ESE) for inflection point}
+  \item{A(2,1)}{The index j1 for EDE method}
+  \item{A(2,2)}{The index j2 for EDE method}
+  \item{A(2,3)}{The Extremum Distance Estimator (EDE) for inflection point, if this method is applicable}
 }
 \references{
 [1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr

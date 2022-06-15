@@ -31,9 +31,9 @@ This method is not so fast as \code{\link{ede}} but it can be used for a fine-tu
 }
 \value{
 A matrix of size 1 x 3 is returned with elements:
-  \item{A(1,1)=\eqn{i_1}}{The index j-right for ESE method}
-  \item{A(1,2)=\eqn{i_2}}{The index j-left for ESE method}
-  \item{A(1,3)=\eqn{\chi_{S}}}{The Extremum Surface Estimator (ESE) for inflection point}
+  \item{A(1,1)}{The index j-right for ESE method}
+  \item{A(1,2)}{The index j-left for ESE method}
+  \item{A(1,3)}{The Extremum Surface Estimator (ESE) for inflection point}
 }
 \references{
 [1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr

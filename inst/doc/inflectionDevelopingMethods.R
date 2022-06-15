@@ -1,4 +1,4 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 library(inflection)
 knitr::opts_chunk$set(echo = TRUE)
 options(max.width = 1000)
@@ -34,7 +34,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- tanhESEasym, echo=TRUE---------------------------------------------
+## ---- tanhESEasym, echo=TRUE--------------------------------------------------
 data("table_03_04")
 x=table_03_04$x
 y=table_03_04$y
@@ -76,7 +76,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- Gomb, echo=TRUE----------------------------------------------------
+## ---- Gomb, echo=TRUE---------------------------------------------------------
 data("table_08_09")
 x=table_08_09$x
 y=table_08_09$y
@@ -98,7 +98,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- GombNOISE, echo=TRUE-----------------------------------------------
+## ---- GombNOISE, echo=TRUE----------------------------------------------------
 data("table_10_11")
 x=table_08_09$x
 y=table_08_09$y

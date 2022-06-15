@@ -1,3 +1,9 @@
+What’s new in version 1.3.6
+---------------------------
+
+1. Fix minor issue of item values at help files for OS "-linux-x86_64-debian-clang", "r-devel-linux-x86_64-debian-gcc"
+
+
 What’s new in version 1.3.5
 ---------------------------
 
