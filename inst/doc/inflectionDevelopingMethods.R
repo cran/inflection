@@ -4,7 +4,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options(max.width = 1000)
 options(max.print = 100000)
 
-## ---- tanhESE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 library(inflection)
 data("table_01")
 x=table_01$x
@@ -19,7 +19,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- tanhESEnoisy, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESEnoisy, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 library(inflection)
 data("table_02")
 x=table_01$x
@@ -34,7 +34,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- tanhESEasym, echo=TRUE--------------------------------------------------
+## ----tanhESEasym, echo=TRUE---------------------------------------------------
 data("table_03_04")
 x=table_03_04$x
 y=table_03_04$y
@@ -47,7 +47,7 @@ cc$iplast
 dd=bede(x,y,0)
 dd$iplast
 
-## ---- tanhESEasymPLOT, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESEasymPLOT, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 plot(x,y,cex=0.3,pch=19)
 grid()
 abline(v=pese)
@@ -56,7 +56,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- tanhESEasymNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESEasymNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 data("table_05_06")
 x=table_05_06$x
 y=table_05_06$y
@@ -76,7 +76,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- Gomb, echo=TRUE---------------------------------------------------------
+## ----Gomb, echo=TRUE----------------------------------------------------------
 data("table_08_09")
 x=table_08_09$x
 y=table_08_09$y
@@ -89,7 +89,7 @@ cc$iplast
 dd=bede(x,y,0)
 dd$iplast
 
-## ---- GombPLOT, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----GombPLOT, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 plot(x,y,cex=0.3,pch=19)
 grid()
 abline(v=pese)
@@ -98,7 +98,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- GombNOISE, echo=TRUE----------------------------------------------------
+## ----GombNOISE, echo=TRUE-----------------------------------------------------
 data("table_10_11")
 x=table_08_09$x
 y=table_08_09$y
@@ -111,7 +111,7 @@ cc$iplast
 dd=bede(x,y,0)
 dd$iplast
 
-## ---- GombPLOTNOISE, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----GombPLOTNOISE, echo=FALSE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 plot(x,y,cex=0.3,pch=19)
 grid()
 abline(v=pese)
@@ -120,7 +120,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- poly3sym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----poly3sym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 data("table_13")
 x=table_13$x
 y=table_13$y
@@ -130,7 +130,7 @@ bb=ese(x,y,0);bb
 pese=bb[,3];pese
 abline(v=pese)
 
-## ---- poly3symNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----poly3symNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 data("table_14_15")
 x=table_14_15$x
 y=table_14_15$y
@@ -144,7 +144,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- poly3asym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----poly3asym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 data("table_17_18")
 x=table_17_18$x
 y=table_17_18$y
@@ -162,7 +162,7 @@ abline(v=dd$iplast,col='red')
 knitr::kable(cc$iters, caption = 'BESE')
 knitr::kable(dd$iters, caption = 'BEDE')
 
-## ---- poly3asymNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----poly3asymNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 data("table_19_20")
 x=table_19_20$x
 y=table_19_20$y

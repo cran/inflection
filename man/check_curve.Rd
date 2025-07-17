@@ -30,9 +30,9 @@ A list with members:
 }
 }
 \references{
-[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2} \cr
 
-[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} \cr
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} \cr
 
 [3]Bardsley, W. G. & Childs, R. E. Sigmoid curves, non-linear double-reciprocal plots and allosterism Biochemical Journal, Portland Press Limited, 1975, 149, 313-328
 }
@@ -46,8 +46,8 @@ If we do not have a visual inspection of our data, then this function is useful 
 \code{\link{findipl}}, \code{\link{ese}}, \code{\link{ede}}, \code{\link{bese}}, \code{\link{bede}} .
 }
 \examples{
-## Lets create a really hard data set, an exxample of a "2:2 function" taken from [3]
-## This function for x>0 has an inflectrion point at 
+## Lets create a really hard data set, an example of a "2:2 function" taken from [3]
+## This function for x>0 has an inflection point at 
 ## x = -1/8+(1/24)*sqrt(381) = 0.6883008876 ~0.69
 ## We want to see ,if function 'check_curve()' will proper classify it,
 ## given that we used [0.2,4] as definition range.

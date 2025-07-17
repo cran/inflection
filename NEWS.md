@@ -1,3 +1,8 @@
+What’s new in version 1.3.7
+---------------------------
+
+1. Fix minor issue of Author in DECRIPTION file
+
 What’s new in version 1.3.6
 ---------------------------
 
@@ -32,7 +37,7 @@ Install the inflection package and then read vignettes:
     -   Demetris T. Christopoulos (2014). Developing methods for
         identifying the inflection point of a convex/concave curve.
         arXiv:1206.5478v2 \[math.NA\].
-        <a href="https://arxiv.org/pdf/1206.5478v2.pdf" class="uri">https://arxiv.org/pdf/1206.5478v2.pdf</a>
+        <a href="https://arxiv.org/pdf/1206.5478v2" class="uri">https://arxiv.org/pdf/1206.5478v2</a>
 -   `vignette('inflectionMissionImpossible', package ='inflection')` a
     vignette for ‘impossible’ missions
 
@@ -87,4 +92,4 @@ What’s new in version 1.2
 Demetris T. Christopoulos (2016). On the efficient identification of an
 inflection point.International Journal of Mathematics and Scientific
 Computing, (ISSN: 2231-5330), vol. 6(1).
-<a href="https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf" class="uri">https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf</a>
+<a href="https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf" class="uri">https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf</a>

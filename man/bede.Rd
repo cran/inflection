@@ -33,9 +33,9 @@ It returns a list of two elements: \cr
 used at each iteration, the [a,b] range where we searched and the EDE estimated inflection point.}
 }
 \references{
-[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2} \cr
 
-[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point. International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
 }
 \author{
 Demetris T. Christopoulos

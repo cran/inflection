@@ -35,7 +35,7 @@ where usually k=5 because it corresponds to 96\%, while an estimator of \eqn{\si
 A one row matrix with elements the output of EDE, the given k and the Chebyshev c.i.
 }
 \references{
-Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
+Demetris T. Christopoulos (2016). On the efficient identification of an inflection point. International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} 
 }
 \author{
 Demetris T. Christopoulos

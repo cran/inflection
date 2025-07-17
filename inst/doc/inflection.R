@@ -4,7 +4,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options(max.width = 1000)
 options(max.print = 100000)
 
-## ---- tanhESE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 f=function(x){5+5*tanh(x-5)}
 x=seq(0,10,by=0.05)
 y=f(x)
@@ -18,7 +18,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- tanhEDE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhEDE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 x=seq(0,10,by=0.05)
 y=f(x)
 plot(x,y,cex=0.3,pch=19)
@@ -31,7 +31,7 @@ ee$iplast
 abline(v=cc$iplast,col='red')
 knitr::kable(ee$iters, caption = 'BEDE')
 
-## ---- tanhESEright, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhESEright, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 x=seq(3,10,by=0.05)
 y=f(x)
 plot(x,y,cex=0.5,pch=19)
@@ -45,7 +45,7 @@ cc$iplast
 abline(v=cc$iplast,col='blue')
 knitr::kable(cc$iters, caption = 'BESE')
 
-## ---- tanhEDEright, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----tanhEDEright, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 x=seq(3,10,by=0.05)
 y=f(x)
 plot(x,y,cex=0.5,pch=19)

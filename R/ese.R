@@ -4,7 +4,7 @@ function(x,y,index,doparallel=FALSE)
     #Output for ESE method as defined theoretically in:
     #
     # [1]Demetris T. Christopoulos, Developing methods for identifying the inflection point of a convex/ concave curve. 
-    # arXiv:1206.5478v2 [math.NA], https://arxiv.org/pdf/1206.5478v2.pdf , 2014 
+    # arXiv:1206.5478v2 [math.NA], https://arxiv.org/pdf/1206.5478v2 , 2014 
     # [2]Demetris T. Christopoulos, On the efficient identification of an inflection point,
     # International Journal of Mathematics and Scientific Computing,(ISSN: 2231-5330), vol. 6(1),
     # https://www.researchgate.net/publication/304557351 , 2016

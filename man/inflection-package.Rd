@@ -26,11 +26,11 @@ to load Table 1 of [1] we just use data("table_01").
 Demetris T. Christopoulos
 }
 \references{
-[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2.pdf} \cr
+[1]Demetris T. Christopoulos (2014). Developing methods for identifying the inflection point of a convex/concave curve. arXiv:1206.5478v2 [math.NA]. \url{https://arxiv.org/pdf/1206.5478v2} \cr
 
-[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} \cr
+[2]Demetris T. Christopoulos (2016). On the efficient identification of an inflection point.International Journal of Mathematics and Scientific Computing, (ISSN: 2231-5330), vol. 6(1). \url{https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf} \cr
 
-[3]Demetris T. Christopoulos (2016). Introducing Unit Invariant Knee (UIK) As an Objective Choice for Elbow Point in Multivariate Data Analysis Techniques (March 1, 2016). \url{https://www.ssrn.com/abstract=3043076}  
+[3]Demetris T. Christopoulos (2016). Introducing Unit Invariant Knee (UIK) As an Objective Choice for Elbow Point in Multivariate Data Analysis Techniques (March 1, 2016). \doi{10.2139/ssrn.3043076}  
 }
 \seealso{
 \code{\link{ese}}, \code{\link{bese}}, \code{\link{ede}}, \code{\link{bede}}, \code{\link{findiplist}}, \code{\link{findipiterplot}}

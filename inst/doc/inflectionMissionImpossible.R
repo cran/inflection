@@ -3,7 +3,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options(max.width = 1000)
 options(max.print = 100000)
 
-## ---- positive, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----positive, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 library(inflection)
 f=function(x){(1/8*x+1/2*x^2)/(1+1/8*x+1/2*x^2)}
 x=seq(0,5,0.1)
@@ -21,10 +21,10 @@ ipbese$iplast
 plot(x,y,pch=19,cex=0.1)
 abline(v=ipbese$iplast,col='blue')
 
-## ---- positers,echo=FALSE-----------------------------------------------------
+## ----positers,echo=FALSE------------------------------------------------------
 knitr::kable(ipbese$iters, caption = 'BESE')
 
-## ---- pos6digits, echo=TRUE---------------------------------------------------
+## ----pos6digits, echo=TRUE----------------------------------------------------
 # x=seq(0.68,0.69,0.0001)
 # y=f(x)
 # cc=check_curve(x,y);cc
@@ -38,7 +38,7 @@ knitr::kable(ipbese$iters, caption = 'BESE')
 ## 3  12 0.6881 0.6886 0.68835
 ## 4   6 0.6882 0.6884 0.68830
 
-## ---- positiveNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----positiveNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 x=seq(0.0,3.,0.001)
 set.seed(20190628)
 y=f(x)+runif(length(x),-0.01,0.01)
@@ -49,10 +49,10 @@ ipbese$iplast
 plot(x,y,pch=19,cex=0.1)
 abline(v=ipbese$iplast,col='blue')
 
-## ---- positersNOISE,echo=FALSE------------------------------------------------
+## ----positersNOISE,echo=FALSE-------------------------------------------------
 knitr::kable(ipbese$iters, caption = 'BESE')
 
-## ---- bigdata, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----bigdata, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 f=function(x){500+500*tanh(x-500)}
 x=seq(0,1000,0.001)
 y=f(x)
@@ -61,10 +61,10 @@ t1=Sys.time();ede(x,y,0);t2=Sys.time();t2-t1
 ipbede=bede(x,y,cc$index)
 ipbede$iplast
 
-## ---- bigdataiters,echo=FALSE-------------------------------------------------
+## ----bigdataiters,echo=FALSE--------------------------------------------------
 knitr::kable(ipbede$iters, caption = 'BEDE')
 
-## ---- bigdataNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----bigdataNOISE, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 f=function(x){500+500*tanh(x-500)}
 x=seq(0,1000,0.001)
 set.seed(20190628)
@@ -76,10 +76,10 @@ ipbede$iplast
 plot(x[495000:505000],y[495000:505000],xlab="x",ylab="y",pch='.')
 abline(v=ipbede$iplast)
 
-## ---- bigdataitersNOISE,echo=FALSE--------------------------------------------
+## ----bigdataitersNOISE,echo=FALSE---------------------------------------------
 knitr::kable(ipbede$iters, caption = 'BEDE')
 
-## ---- bigdataNOISEasym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
+## ----bigdataNOISEasym, echo=TRUE,out.width='75%', fig.align='center',fig.width=10, fig.height=6----
 f=function(x){500+500*tanh(x-500)}
 x=seq(0,700,0.001)
 set.seed(20190628)
@@ -91,10 +91,10 @@ ipbede$iplast
 plot(x[495000:505000],y[495000:505000],xlab="x",ylab="y",pch='.')
 abline(v=ipbede$iplast)
 
-## ---- bigdataitersNOISEasym,echo=FALSE----------------------------------------
+## ----bigdataitersNOISEasym,echo=FALSE-----------------------------------------
 knitr::kable(ipbede$iters, caption = 'BEDE')
 
-## ---- positiveNLS, echo=TRUE--------------------------------------------------
+## ----positiveNLS, echo=TRUE---------------------------------------------------
 # library(nlme)
 # x=seq(0,5,0.1)
 # f=function(x){(1/8*x+1/2*x^2)/(1+1/8*x+1/2*x^2)}
@@ -106,7 +106,7 @@ knitr::kable(ipbede$iters, caption = 'BEDE')
 # est=try(nls(fmla,df))
 # coef(est)
 
-## ---- nls1--------------------------------------------------------------------
+## ----nls1---------------------------------------------------------------------
 # y ~ SSlogis(x, Asym, xmid, scal)
 # Nonlinear regression model
 #   model: y ~ SSlogis(x, Asym, xmid, scal)
@@ -139,7 +139,7 @@ knitr::kable(ipbede$iters, caption = 'BEDE')
 # Number of iterations to convergence: 0 
 # Achieved convergence tolerance: 1.401e-06
 
-## ---- positiveNOISEnls, echo=TRUE---------------------------------------------
+## ----positiveNOISEnls, echo=TRUE----------------------------------------------
 # x=seq(0.0,3.,0.001)
 # f=function(x){(1/8*x+1/2*x^2)/(1+1/8*x+1/2*x^2)}
 # set.seed(20190628)
@@ -149,7 +149,7 @@ knitr::kable(ipbede$iters, caption = 'BEDE')
 # fmla=as.formula("y~SSlogis(x,Asym,xmid,scal)");fmla
 # try(nls(fmla,df))
 
-## ---- nls2--------------------------------------------------------------------
+## ----nls2---------------------------------------------------------------------
 # Nonlinear regression model
 # model: y ~ SSlogis(x, Asym, xmid, scal)
 # data: df
@@ -181,7 +181,7 @@ knitr::kable(ipbede$iters, caption = 'BEDE')
 # Number of iterations to convergence: 0 
 # Achieved convergence tolerance: 1.768e-07
 
-## ---- bigdatanls, echo=TRUE---------------------------------------------------
+## ----bigdatanls, echo=TRUE----------------------------------------------------
 # f=function(x){500+500*tanh(x-500)}
 # x=seq(0,1000,0.001)
 # y=f(x)

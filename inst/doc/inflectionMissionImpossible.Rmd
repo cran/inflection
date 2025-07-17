@@ -327,7 +327,7 @@ URL: https://doi.org/10.48550/arXiv.1206.5478
 
 [2] Demetris T. Christopoulos (2016), On the Efficient Identification of an Inflection Point,
 International Journal of Mathematics and Scientific Computing , Volume 6 (1), June 2016, Pages 13-20, ISSN: 2231-5330. 
-URL: https://veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf
+URL: https://demovtu.veltech.edu.in/wp-content/uploads/2016/04/Paper-04-2016.pdf
 
 [3] Bardsley, W. G. & Childs, R. E. Sigmoid curves, non-linear double-reciprocal plots and allosterism. Biochemical Journal, Portland Press Limited, 1975, 149, 313-328
 
